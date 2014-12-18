@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    if(workerOpen)
+    if(this->workerOpen)
     {
         delete worker;
         delete thread;
@@ -326,3 +326,4 @@ void MainWindow::on_btnZoomIn_clicked()
 {
     zoomScene(1);
 }
+

@@ -43,7 +43,6 @@ private slots:
     void on_cmdBlack_White_triggered();
     void on_cmdRGB_HSL_triggered();
     void on_btnCrop_clicked();
-
     void on_btnPointer_clicked();
     void on_btnZoomOut_clicked();
     void on_btnZoomIn_clicked();
@@ -91,6 +90,7 @@ private:
     void createImageWorker();
     void zoomScene(int direction);
     void setResolution(MainWindow *window);
+    void cleanup(void);
 
 };
 

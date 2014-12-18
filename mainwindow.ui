@@ -42,16 +42,11 @@
      <string>File</string>
     </property>
     <addaction name="cmdOpen"/>
-    <addaction name="cmdSave"/>
-    <addaction name="cmdClose"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="cmdUndo"/>
-    <addaction name="cmdRedo"/>
-    <addaction name="separator"/>
     <addaction name="cmdRGB_HSL"/>
    </widget>
    <widget class="QMenu" name="menuFilter">
@@ -59,8 +54,6 @@
      <string>Filter</string>
     </property>
     <addaction name="cmdBlack_White"/>
-    <addaction name="cmdInvert"/>
-    <addaction name="cmdPolarise"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
