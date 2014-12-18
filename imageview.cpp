@@ -56,12 +56,12 @@ void ImageView::mouseReleaseEvent(QMouseEvent *e)
             QImage copy = image;
             QImage crop;
 
-            int x = rubberBand->x();
-            int y = rubberBand->y();
+            //int x = rubberBand->x();
+            //int y = rubberBand->y();
             int w = rubberBand->width();
             int h = rubberBand->height();
 
-            crop = copy.copy(x, y, w, h);
+            crop = copy.copy(0, 0, w, h);
             cropping = false;
             emit croppedImage(crop);
         }

@@ -42,14 +42,3 @@ QImage Filters::serialFilterBlackWhite(QImage image)
     return image;
 }
 
-/*
- * ---------------------------------------------------------------------------------
- * BLACK AND WHITE - SERIAL
- * ---------------------------------------------------------------------------------
- * Directly modifies the given QPixmap object, desaturating each pixel of the object
- * to produce a black and white representation (serial implementation)
- *
- * @param QPixmap image : the QPixmap object we wish to convert
- * @return QPixmap : the edited QPixmap object
- * ---------------------------------------------------------------------------------
- */

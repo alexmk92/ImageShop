@@ -35,6 +35,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Disable the edit buttons as nothing is availabe
     ui->cmdRGB_HSL->setEnabled(false);
     ui->cmdBlack_White->setEnabled(false);
+
+    // Create the image stack
+    image_stack = new QList<QImage>;
 }
 
 MainWindow::~MainWindow()
@@ -203,6 +206,10 @@ void MainWindow::renderImageToCanvas(QImage img)
     scene->setSceneRect(pixImg.rect());
     graphics_view->setScene(scene);
 
+    // Add the new image to the stack - this is the only code which will write to the stack,
+    // as its our single control method of writing a new image via signals and slots.
+    push_to_stack(img);
+
     // Enable manipulation controls
     ui->cmdRGB_HSL->setEnabled(true);
     ui->cmdBlack_White->setEnabled(true);
@@ -267,6 +274,9 @@ void MainWindow::wheelEvent(QWheelEvent *event)
  */
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+    // Undo
+    if(event->modifiers() == Qt::ControlModifier && (event->key() == Qt::Key_Z))
+        undo();
     // Zoom in ctrl +
     if(event->modifiers() == Qt::ControlModifier && (event->key() == Qt::Key_Equal))
         zoomScene(1);
@@ -279,6 +289,32 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         graphics_view->setDragMode(graphics_view->NoDrag);
 }
 
+// When undo is pressed get the older stack
+void MainWindow::on_actionUndo_triggered()
+{
+    undo();
+}
+
+void MainWindow::undo()
+{
+    if(image_stack->size() > 0)
+    {
+        // Render the image on the top of the stack
+        renderImageToCanvas(pop_from_stack());
+    }
+}
+// Stack method
+void MainWindow::push_to_stack(QImage img)
+{
+    image_stack->push_front(img);
+}
+
+QImage MainWindow::pop_from_stack()
+{
+     image_stack->pop_front();
+     QImage stack_top = image_stack->at(0);
+     return stack_top;
+}
 
 /*
  * -----------------------------------------------------------------------------------------

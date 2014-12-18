@@ -46,6 +46,7 @@ private slots:
     void on_btnPointer_clicked();
     void on_btnZoomOut_clicked();
     void on_btnZoomIn_clicked();
+    void on_actionUndo_triggered();
 
 public slots:
     void renderImageToCanvas(QImage image);
@@ -64,6 +65,7 @@ private:
     QThread          *thread;
     Worker           *worker;
     ImageView        *graphics_view;
+    QList<QImage>    *image_stack;
 
     // Global references to the current working image and scene
     QGraphicsScene *scene;
@@ -91,6 +93,9 @@ private:
     void zoomScene(int direction);
     void setResolution(MainWindow *window);
     void cleanup(void);
+    void push_to_stack(QImage);
+    void undo();
+    QImage pop_from_stack();
 
 };
 
